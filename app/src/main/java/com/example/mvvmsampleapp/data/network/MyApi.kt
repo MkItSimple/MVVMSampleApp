@@ -1,6 +1,7 @@
 package com.example.mvvmsampleapp.data.network
 
 import com.example.mvvmsampleapp.data.network.responses.AuthResponse
+import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
@@ -20,9 +21,16 @@ interface MyApi {
     ) : Response<AuthResponse>
 
     companion object{
-        operator fun invoke() : MyApi{
+        operator fun invoke(
+            networkConnectionInterceptor: NetworkConnectionInterceptor
+        ) : MyApi{
+
+            val okkHttpclient = OkHttpClient.Builder()
+                .addInterceptor(networkConnectionInterceptor)
+                .build()
 
             return Retrofit.Builder()
+                .client(okkHttpclient)
                 .baseUrl("https://us-central1-fir-api-2deff.cloudfunctions.net/app/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
