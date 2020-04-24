@@ -33,6 +33,7 @@ interface MyApi {
     @GET("quotes")
     suspend fun getQuotes() : Response<QuotesResponse>
 
+    //
     companion object{
         operator fun invoke(
             networkConnectionInterceptor: NetworkConnectionInterceptor
