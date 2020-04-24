@@ -37,8 +37,8 @@ class NetworkConnectionInterceptor(
                 actNw.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> true
                 else -> false
             }
-        } else {
-            return false
         }
+
+        return true
     }
 }

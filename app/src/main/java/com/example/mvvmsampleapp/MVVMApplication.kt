@@ -32,5 +32,4 @@ class MVVMApplication : Application(), KodeinAware {
 
 
     }
-
 }
